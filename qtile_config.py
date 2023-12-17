@@ -39,11 +39,11 @@ import subprocess
 
 from libqtile import hook
 
-# Set xrandr settings.
+# Set xrandr settings and run applications at boot.
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/xrandr_config.sh')
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.Popen([home])
 
 keys = [
