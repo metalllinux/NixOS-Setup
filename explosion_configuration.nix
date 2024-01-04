@@ -83,7 +83,6 @@
   # Allow Un-free Packages
   nixpkgs.config.allowUnfree = true;
   
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -113,15 +112,6 @@
     vscodium 
     wget
   ];
-  
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.thunar.enable = true;
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 
@@ -145,23 +135,9 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
   
-
-    # Enable fonts to use on your system.  You should make sure to add at least
-  # one English font (like dejavu_fonts), as well as Japanese fonts like
-  # "ipafont" and "kochi-substitute".
+  # Install Japanese fonts.
   fonts.fonts = with pkgs; [
     carlito
     dejavu_fonts
@@ -171,14 +147,7 @@
     ttf_bitstream_vera
   ];
 
-  # These settings enable default fonts for your system.  This setting is very
-  # important.  It lets fontconfig know that you want to fall back to a Japanese
-  # font (for example "IPAGothic") if an application tries to show fonts with
-  # Japanese.  For instance, this is important if you are using a terminal
-  # emulator and you `cat` some Japanese text to the screen. If you don't have
-  # "defaultFonts" configured, fontconfig will pick a random Japanese font to
-  # use.  If you have this "defaultFonts" setting configured, fontconfig will
-  # pick the font you have selected.  This makes sure Japanese fonts look nice.
+  # Install Japanese default fonts.
   fonts.fontconfig.defaultFonts = {
     monospace = [
       "DejaVu Sans Mono"
@@ -194,6 +163,8 @@
     ];
   };
 
+ # Set up Japanese IME.
+ # Configure the IME afterwards and set up mozc with `fcitx5-configtool`, add mozc and then you can use Japanese.
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
